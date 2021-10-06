@@ -2,7 +2,7 @@ def get_base_16_from_2(n: str):
 	'''
 	Transforma un numar din baza 2 in baza 10.
 	Input:
-	- n : int
+	- n : str
 	Output:
 	- scrierea numarului citit in baza 2, in baza 16.
 
@@ -25,7 +25,6 @@ def test_get_base_16_from_2():
 	assert get_base_16_from_2( 0010000000100001 ) == 0x2021
 	assert get_base_16_from_2( 101010111100000110011000 ) == 0xabc198
 '''
-
 
 def get_n_choose_k(n: int, k: int):
 	'''
