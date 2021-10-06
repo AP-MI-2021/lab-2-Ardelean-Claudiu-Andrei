@@ -65,22 +65,60 @@ def test_get_n_choose_k():
 	assert get_n_choose_k(6, 3) == 20
 
 
+def get_leap_years(start, end):
+	'''
+	afiseaza lista anilor bisecti din intervalul [start, end]
+	'''
+	lista = []
+	if start > end:
+		aux = start
+		start = end
+		end = aux
+	for an in range(start, end + 1):
+		if an % 4 == 0 and an % 100 != 0:
+			lista.append(an)
+		if an % 400 == 0:
+			lista.append(an)
+	return lista
+
+
+def test_get_leap_years():
+	assert get_leap_years(1996, 2004) == [1996, 2000, 2004]
+	assert get_leap_years(1998, 2013) == [2000, 2004, 2008, 2012]
+	assert get_leap_years(2200, 2208) == [2204, 2208]
+	assert get_leap_years(1832, 1861) == [1832, 1836, 1840, 1844, 1848, 1852, 1856, 1860]
+
+
 def main():
 	while True:
 		print('1. Transformarea din baza 2 in baza 16.')
 		print('2. Combinari de n luate cate k.')
+		print('3. Lista anilor bisecti.')
 		print('x. Iesire din program - exit.')
 		optiune = input('Alege optiunea: ')
 		if optiune == '1':
 			nr1 = input('Dati numarul in baza 2: ')
 			baza = get_base_16_from_2(nr1)
-			print(f'In baza 16, numarul eate {baza}.')
+			print(f'In baza 16, numarul este {baza}.')
 			print("\n")
 		elif optiune == '2':
 			n = int(input('Dati numarul n: '))
 			k = int(input('Dati numarul k: '))
 			combinari = get_n_choose_k(n, k)
 			print(f'Rezultatul a n combinari luate cate k este {combinari}.')
+			print("\n")
+		elif optiune == '3':
+			an_inceput = int(input('Dati primul an: '))
+			an_final = int(input('Dati al doilea an: '))
+			interval = get_leap_years(an_inceput, an_final)
+			interval_string = ''
+			if len(interval) >0:
+				print(f'Anii bisecti dintre {an_inceput} si {an_final} sunt: ')
+				for an in interval:
+					interval_string += str(an) + ' '
+				print (interval_string)
+			else:
+				print(f'Nu avem ani bisecti intre anii {an_inceput} si {an_final}')
 			print("\n")
 		elif optiune == 'x':
 			break
@@ -90,4 +128,5 @@ def main():
 
 '''test_get_base_16_from_2()'''
 test_get_n_choose_k()
+test_get_leap_years()
 main()
